@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TokenEnum } from 'src/Enums/AuthEnums/AuthEnums';
+import { ILoginUser } from 'src/interfaces/AuthInterfaces/ILoginUser';
+import { AuthService } from 'src/Services/AuthService/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +11,80 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm: FormGroup = {} as FormGroup
+  errorMessage: string = ''
+  isvalidUser: boolean = true;
+  isvalidPassword: boolean = true;
+  islogined: boolean = false;
+  constructor(private authService: AuthService, private loginFormBuilder: FormBuilder) {
+
+  }
+
 
   ngOnInit(): void {
+    this.loginForm = this.loginFormBuilder.group({
+      userName: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      error: ['']
+    }
+    );
+  }
+
+  get UserName() {
+    return this.loginForm.get('userName');
+  }
+
+  get Password() {
+    return this.loginForm?.get('password');
+  }
+
+  get Error() {
+    return this.loginForm.get('error')
+  }
+
+  public HandelLogin(form: any) {
+    if (this.UserName?.status == "INVALID") {
+
+      this.isvalidUser = false;
+      return;
+    }
+    this.isvalidUser = true
+    if (this.Password?.status == "INVALID") {
+      this.isvalidPassword = false;
+      return;
+    }
+    else {
+      this.isvalidPassword = true;
+    }
+    const loginUser: ILoginUser = {
+      userName: this.loginForm.get('userName')?.value,
+      password: this.loginForm.get('password')?.value
+    }
+    this.authService.Login(loginUser).subscribe(data => {
+      this.islogined = true;
+      setTimeout(() => {
+        this.islogined = false
+      }, 3000);
+      console.log(data.token)
+      localStorage.setItem(TokenEnum.Token, data.token);
+      localStorage.setItem(TokenEnum.Expiration, data.expiration)
+
+    }, error => {
+      if (error.error.errors) {
+        var errorsMessage = ''
+        for (var key in error.error.errors) {
+          for (var val of error.error.errors[key]) {
+            errorsMessage += val + '\n';
+          }
+
+        }
+        this.loginForm.get('error')?.setValue(errorsMessage)
+      } else {
+        this.loginForm.get('error')?.setValue(error.error)
+      }
+
+    })
   }
 
 }
+

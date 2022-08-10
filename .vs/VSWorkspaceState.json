@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\assets",
-    "\\src\\Modules\\app"
+    "\\src\\interfaces\\AuthInterfaces"
   ],
-  "SelectedNode": "\\src\\classes",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
