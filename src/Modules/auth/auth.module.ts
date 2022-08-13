@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthComponent } from './auth.component';
 import { RouterModule } from '@angular/router';
+import { AddRolesToUserComponent } from './components/add-roles-to-user/add-roles-to-user.component';
 
 
 
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    AuthComponent
+    AuthComponent,
+    AddRolesToUserComponent
   ],
   imports: [
     CommonModule,

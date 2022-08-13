@@ -7,3 +7,9 @@ export enum Roles{
     Employee="EMPLOYEE",
     User='USER'
 }
+
+export const RolesArray=[
+    Roles.Admin,
+    Roles.Employee,
+    Roles.User
+]

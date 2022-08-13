@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {  Router } from '@angular/router';
 import { TokenEnum } from 'src/Enums/AuthEnums/AuthEnums';
 import { ILoginUser } from 'src/interfaces/AuthInterfaces/ILoginUser';
 import { AuthService } from 'src/Services/AuthService/auth.service';
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   isvalidUser: boolean = true;
   isvalidPassword: boolean = true;
   islogined: boolean = false;
-  constructor(private authService: AuthService, private loginFormBuilder: FormBuilder) {
+  constructor(private authService: AuthService, private loginFormBuilder: FormBuilder,private router:Router) {
 
   }
 
@@ -61,13 +62,13 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.get('password')?.value
     }
     this.authService.Login(loginUser).subscribe(data => {
-      this.islogined = true;
-      setTimeout(() => {
-        this.islogined = false
-      }, 3000);
-      console.log(data.token)
+      this.loginForm.get('error')?.setValue('')
+      // console.log(data.token)
       localStorage.setItem(TokenEnum.Token, data.token);
       localStorage.setItem(TokenEnum.Expiration, data.expiration)
+      this.authService.isLogged.next(true)
+      // navigate to home page
+      this.router.navigate(['/'])
 
     }, error => {
       if (error.error.errors) {
@@ -83,6 +84,12 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('error')?.setValue(error.error)
       }
 
+    },()=>{
+      // when request is completed
+      this.islogined = true;
+      setTimeout(() => {
+        this.islogined = false
+      }, 3000);
     })
   }
 
