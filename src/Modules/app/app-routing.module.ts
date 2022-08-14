@@ -20,7 +20,7 @@ const routes: Routes = [
           path: 'account', component: AuthComponent, children: [
           { path: 'login', component: LoginComponent },
           { path: 'register', component: RegisterComponent },
-          {path:'Getallusers', component:AllusersComponent},
+          {path:'Getallusers', component:AllusersComponent,canActivate:[AuthGuard]},
           {path:'addRoleToUser',component:AddRolesToUserComponent,canActivate:[AuthGuard]}
       ]
     },

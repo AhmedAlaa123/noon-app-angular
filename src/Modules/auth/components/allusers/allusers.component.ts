@@ -15,7 +15,6 @@ export class AllusersComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.GetAllusers().subscribe(users=>{this.UserList=users});
-
   }
 
 }
