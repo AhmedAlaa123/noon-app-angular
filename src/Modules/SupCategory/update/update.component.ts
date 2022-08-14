@@ -35,11 +35,11 @@ export class UpdateComponent implements OnInit {
   onupdated(){
  
     
-      // const formData = new FormData();
-      // formData.append('subCategoryImage', this.updatedForm.get('subCategoryImage')?.value);
-      // formData.append('subCategoryName', this.updatedForm.get('subCategoryName')?.value);
+      const formData = new FormData();
+      formData.append('subCategoryImage', this.updatedForm.get('subCategoryImage')?.value);
+      formData.append('subCategoryName', this.updatedForm.get('subCategoryName')?.value);
      
-    this.service.update(this.id,this.updatedForm.value).subscribe(data=>{
+    this.service.update(this.id,formData).subscribe(data=>{
       this.route.navigateByUrl('dashboard/allsup');
     })    
     

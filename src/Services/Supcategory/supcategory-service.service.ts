@@ -26,11 +26,7 @@ export class SupcategoryServiceService {
   {
     return this.http.post<any>(environment.URL,model);
   }
-  //update sup category
-  // update(id:any,model:any)
-  // {
-  //   return this.http.put(environment.URL+id,model);
-  // }
+  
   update(id:ISupCategory,item:any)
   {
     return this.http.put(environment.URL+id,item);
