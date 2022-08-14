@@ -15,6 +15,12 @@ import { NavCategoriesComponent } from './components/nav-categories/nav-categori
 import { HomeSubcateroriesContainerComponent } from '../home/components/home-subcaterories-container/home-subcaterories-container.component';
 import { HomeSubcategoryItemComponent } from '../home/components/home-subcategory-item/home-subcategory-item.component';
 import { HomeModule } from '../home/home.module';
+import { HttpClientModule}  from '@angular/common/http';
+import { SupcategoriesComponent } from '../SupCategory/supcategories/supcategories.component';
+import { SupcategorydetailComponent } from '../SupCategory/supcategorydetail/supcategorydetail.component';
+import { CreateSupcategoriesComponent } from '../SupCategory/create-supcategories/create-supcategories.component';
+import { UpdateComponent } from '../SupCategory/update/update.component';
+import { DashboardComponent } from 'src/Components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +32,12 @@ import { HomeModule } from '../home/home.module';
     FooterCategoriesAppAndSocialComponent,
     FooterCopRightsComponent,
     NavCategoriesComponent,
- 
+    SupcategoriesComponent,
+    SupcategorydetailComponent,
+    HeaderComponent,
+    CreateSupcategoriesComponent,
+    UpdateComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +47,7 @@ import { HomeModule } from '../home/home.module';
     HomeModule
   ],
   providers: [],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
