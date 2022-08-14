@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="card-title"> 
+     <div class="card col-lg-4" *ngFor="let user of UserList"  >
+        <div class="card-body">
+            <h5 class="card-title">  أسم المستخدم :{{user.userName}}  </h5>
+            <h6 class="card-subtitle mb-2 text-muted"> البريد الالكتروني : {{user.email}} </h6>
+            <p class="card-text">الاسم بالكامل :{{user.firstName}} {{user.lastName}}  </p>
+            <p class="card-text"> رقم الهاتف : {{user.phoneNumber}} </p>
+            <p class="card-text"> عنوان المستخدم بالتفصيل :  {{user.country}} ,{{user.city}},{{user.street}}  </p> 
+            <a href="#" class="btn btn-danger">أحذف المستخدم</a>          
+        </div>
+      </div>
+  </div>
+</div>

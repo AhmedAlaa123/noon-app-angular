@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthComponent } from './auth.component';
 import { RouterModule } from '@angular/router';
 import { AddRolesToUserComponent } from './components/add-roles-to-user/add-roles-to-user.component';
+import { AllusersComponent } from './components/allusers/allusers.component';
 
 
 
@@ -15,7 +16,8 @@ import { AddRolesToUserComponent } from './components/add-roles-to-user/add-role
     LoginComponent,
     RegisterComponent,
     AuthComponent,
-    AddRolesToUserComponent
+    AddRolesToUserComponent,
+    AllusersComponent
   ],
   imports: [
     CommonModule,
