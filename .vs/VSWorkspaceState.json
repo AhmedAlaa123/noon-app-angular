@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src\\interfaces\\AuthInterfaces"
+    "\\src\\assets",
+    "\\src\\assets\\images",
+    "\\src\\assets\\images\\Website-Images"
   ],
-  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

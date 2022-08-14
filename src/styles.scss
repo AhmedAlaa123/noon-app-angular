@@ -13,6 +13,9 @@ body{
 .main-shadow{
     box-shadow: 3px 3px 4px var(--light-gray-color), -3px -3px 4px var(--light-gray-color);
 }
+.secondary-shadow{
+    box-shadow: 3px 3px 4px #eee, -3px -3px 4px #eee;
+}
 .text-main{
     color: var(--main-color);
 }
@@ -67,4 +70,13 @@ body{
     font-weight: 300;
     font-size: 13px;
     color: #999;
+}
+.sub-cate-item{
+    width: 150px;
+    height: 150px;
+
+}
+.sub-cate-item img{
+ width: 100%;
+    object-fit: cover;
 }
