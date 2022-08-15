@@ -11,8 +11,7 @@ import { Location } from '@angular/common';
 })
 export class AllusersComponent implements OnInit {
   UserList:IUser[]=[];
-  User:IUser[]=[];
-
+  
 
   constructor(private authService: AuthService , private activeroute:ActivatedRoute,private router:Router 
     , private location :Location ) { }
@@ -22,7 +21,7 @@ export class AllusersComponent implements OnInit {
 
   }
 
-   DeleteUser(userid:string){
+   Deleted(userid:string){
     if( confirm("هل  تريد حذف المستخدم ؟")){
 
    this.authService.DeleteUser(userid).subscribe(r=>{
