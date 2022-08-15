@@ -7,7 +7,10 @@
             <p class="card-text">الاسم بالكامل :{{user.firstName}} {{user.lastName}}  </p>
             <p class="card-text"> رقم الهاتف : {{user.phoneNumber}} </p>
             <p class="card-text"> عنوان المستخدم بالتفصيل :  {{user.country}} ,{{user.city}},{{user.street}}  </p> 
-            <a href="#" class="btn btn-danger">أحذف المستخدم</a>          
+            <!-- <a routerlink="/DeleteUser/{{user.id}}" class="btn btn-danger">أحذف المستخدم</a>     -->
+            <!-- <a name="" id="" class="btn btn-danger" [routerLink]="['/DeleteUser', user.id]" role="button">أحذف المستخدم</a>      -->
+             <button  class="btn btn-outline-danger" type="button" (click)='DeleteUser(user.id)'>أحذف المستخدم</button>
+             <!-- <div> {{user.id}}</div> -->
         </div>
       </div>
   </div>

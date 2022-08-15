@@ -22,6 +22,7 @@ const routes: Routes = [
           { path: 'register', component: RegisterComponent },
           {path:'Getallusers', component:AllusersComponent},
           {path:'addRoleToUser',component:AddRolesToUserComponent,canActivate:[AuthGuard]}
+          
       ]
     },
     

@@ -17,7 +17,8 @@ import { AllusersComponent } from './components/allusers/allusers.component';
     RegisterComponent,
     AuthComponent,
     AddRolesToUserComponent,
-    AllusersComponent
+    AllusersComponent,
+   
   ],
   imports: [
     CommonModule,

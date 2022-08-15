@@ -15,7 +15,7 @@ export class AuthService {
   public isLogged:BehaviorSubject<boolean>;
   baseUrl:string='https://localhost:5200/api/Account/'
 
-  constructor(private httpClinet:HttpClient) {
+  constructor(private httpClinet:HttpClient ) {
     this.isLogged=new BehaviorSubject<boolean>(localStorage.getItem(TokenEnum.Token)?true:false);
    }
 
@@ -49,6 +49,16 @@ export class AuthService {
       body:userRole
      })
   }
+   public DeleteUser (userid:any){
+    // let httpheaders=new HttpHeaders()
+    // .set('Content-type','application/Json');
+    // let options={
+    //   headers:httpheaders
+    // };
+     return this.httpClinet.delete(this.baseUrl+"removeUser"+"/"+userid);
+
+    
+   }
  
 
 private  get Header (){
