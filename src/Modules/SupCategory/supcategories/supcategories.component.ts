@@ -31,7 +31,7 @@ SupCtegories:ISupCategory[]=[];
   }
   gotocreate()
   {
-    this.router.navigate(['/create'])
+    this.router.navigate(['/dashboard/create'])
   }
   delete(id:any)
   {

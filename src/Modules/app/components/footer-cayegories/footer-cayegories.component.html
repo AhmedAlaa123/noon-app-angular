@@ -3,7 +3,7 @@
         <div *ngFor="let category of Categories" class="col mb-3">
                 <h6 class="mb-3 text-dark" style="font-size:17px; font-weight: 400;">{{category.name}}</h6>
                 <p *ngFor="let subcategory of category.subCategories" >
-                    <a class="nav-link my-text-small" routerLink="/subcategy/{{subcategory.subCategoryId}}">{{subcategory.subCategoryName}}</a>   
+                    <a class="nav-link my-text-small" routerLink="/subcategory/{{subcategory.subCategoryId}}">{{subcategory.subCategoryName}}</a>   
                     <!-- <img src="{{subcategory.subCategoryImage}}"/> -->
                 </p>
         </div>

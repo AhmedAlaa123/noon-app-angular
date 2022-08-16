@@ -10,31 +10,32 @@ import { ISupCategory } from 'src/interfaces/SupCategoryIntefaces/SupCategory';
 })
 export class SupcategoryServiceService {
 
+  url:string=`${environment.BaseUrl}SubCategory/`
   constructor(private http:HttpClient) { }
   //get all sup categories
   getsupcategories() :Observable<ISupCategory[]>
   {
-    return this.http.get<ISupCategory[]>(`${environment.SubCategoriesImagesURL}getall`);
+    return this.http.get<ISupCategory[]>(`${this.url}getall`);
   }
   //show details for sup category
   details(id:any):Observable<ISupCategory>
   {
-    return this.http.get<ISupCategory>(environment.SubCategoriesImagesURL+id);
+    return this.http.get<ISupCategory>(this.url+id);
   }
   //create sup category
   create(model:any):Observable<any>
   {
-    return this.http.post<any>(environment.SubCategoriesImagesURL,model);
+    return this.http.post<any>(this.url,model);
   }
   
   update(id:ISupCategory,item:any)
   {
-    return this.http.put(environment.SubCategoriesImagesURL+id,item);
+    return this.http.put(this.url+id,item);
   }
   //Delete sup category
   delete(id:any)
   {
 
-    return this.http.delete(environment.SubCategoriesImagesURL+id);
+    return this.http.delete(this.url+id);
   }
 }

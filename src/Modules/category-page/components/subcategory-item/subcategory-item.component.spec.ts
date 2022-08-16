@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubcategoryCircleComponent } from './subcategory-circle.component';
+import { SubcategoryItemComponent } from './subcategory-item.component';
 
-describe('SubcategoryCircleComponent', () => {
-  let component: SubcategoryCircleComponent;
-  let fixture: ComponentFixture<SubcategoryCircleComponent>;
+describe('SubcategoryItemComponent', () => {
+  let component: SubcategoryItemComponent;
+  let fixture: ComponentFixture<SubcategoryItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubcategoryCircleComponent ]
+      declarations: [ SubcategoryItemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubcategoryCircleComponent);
+    fixture = TestBed.createComponent(SubcategoryItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

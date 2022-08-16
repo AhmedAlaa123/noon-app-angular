@@ -16,6 +16,6 @@ export class HomeSubcategoryItemComponent implements OnInit {
   GotoSubCategory()
   {
     this.router.navigate([`/subcategory/${this.Subcategory.subCategoryId}`]);
-    alert('clicked')
+
   }
 }

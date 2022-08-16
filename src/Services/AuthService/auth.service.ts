@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TokenEnum } from 'src/Enums/AuthEnums/AuthEnums';
 import { ILoginUser } from 'src/interfaces/AuthInterfaces/ILoginUser';
@@ -13,10 +14,27 @@ import { IUserRole } from 'src/interfaces/AuthInterfaces/IUserRole';
 export class AuthService {
 
   public isLogged:BehaviorSubject<boolean>;
+  public userRoles:BehaviorSubject<string[]>;
   baseUrl:string='https://localhost:5200/api/Account/'
 
   constructor(private httpClinet:HttpClient) {
-    this.isLogged=new BehaviorSubject<boolean>(localStorage.getItem(TokenEnum.Token)?true:false);
+    const token=localStorage.getItem(TokenEnum.Token);
+    this.isLogged=new BehaviorSubject<boolean>(token?true:false);
+    if(token){
+      const jwtTokenData=new JwtHelperService().decodeToken(token);
+        this.userRoles=new BehaviorSubject([... jwtTokenData.roles]);
+      }
+      else
+      this.userRoles=new BehaviorSubject<string[]>([]);
+   }
+
+   private setUserRoles ()
+   {
+      if(localStorage.getItem(TokenEnum.Token))
+      {
+       
+        
+      }
    }
 
   public Login(userLogin:ILoginUser):Observable<any>{
