@@ -67,6 +67,16 @@ export class AuthService {
       body:userRole
      })
   }
+   public DeleteUser (userid:any){
+    // let httpheaders=new HttpHeaders()
+    // .set('Content-type','application/Json');
+    // let options={
+    //   headers:httpheaders
+    // };
+     return this.httpClinet.delete(this.baseUrl+"removeUser"+"/"+userid);
+
+    
+   }
  
 
 private  get Header (){

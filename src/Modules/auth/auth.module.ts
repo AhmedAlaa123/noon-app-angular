@@ -18,7 +18,8 @@ import { RegisterComponent } from './components/register/register.component';
     RegisterComponent,
     AuthComponent,
     AddRolesToUserComponent,
-    AllusersComponent
+    AllusersComponent,
+   
   ],
   imports: [
     CommonModule,
