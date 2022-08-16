@@ -9,11 +9,9 @@ import { UpdateComponent } from '../SupCategory/update/update.component';
 
 const routes: Routes = [
   {path:'header',component:HeaderComponent},
- 
   {path:'sup/:id',component:SupcategorydetailComponent},
   {path:'create',component:CreateSupcategoriesComponent},
   {path:'update/:id',component:UpdateComponent},
-
 {path:'dashboard',component:DashboardComponent,
 children:[ {path:'allsup',component:SupcategoriesComponent}]
 }
