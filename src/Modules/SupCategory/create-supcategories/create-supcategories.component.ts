@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { ISupCategory } from 'src/interfaces/SupCategoryIntefaces/SupCategory';
 import { SupcategoryServiceService } from 'src/Services/Supcategory/supcategory-service.service';
@@ -11,16 +11,24 @@ import { SupcategoryServiceService } from 'src/Services/Supcategory/supcategory-
 })
 export class CreateSupcategoriesComponent implements OnInit {
   
-  constructor(private service:SupcategoryServiceService,private route:Router) { }
+  constructor(private service:SupcategoryServiceService,private route:Router, private fb:FormBuilder) { }
 
   uploadForm!: FormGroup; 
+  errormessage:string=""
 
   ngOnInit(): void {
-    this.uploadForm=new  FormGroup({
-      name:new FormControl(''),
-      image:new FormControl(''),
+    this.uploadForm=this.fb.group({
+      name:['',[Validators.required,Validators.minLength(3)]],
+      image:['',[Validators.required]],
   })}
-  
+  get name()
+  {
+    return this.uploadForm.get("name")
+  }
+  get image()
+  {
+    return this.uploadForm.get("image")
+  }
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
@@ -36,7 +44,6 @@ export class CreateSupcategoriesComponent implements OnInit {
     this.service.create(formData).subscribe(data=>{
       this.route.navigateByUrl('/dashboard/allsup');
     })
-   
   }
 
 }

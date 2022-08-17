@@ -18,4 +18,8 @@ export class DashboardComponent implements OnInit {
   {
     this.router.navigate(['allsup'],{relativeTo:this.active});
   }
+  Delivercompnies()
+  {
+    this.router.navigate(['allcompnies'],{relativeTo:this.active});
+  }
 }

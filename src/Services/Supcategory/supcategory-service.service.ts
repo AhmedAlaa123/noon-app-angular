@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ISupCategory } from 'src/interfaces/SupCategoryIntefaces/SupCategory';
 
@@ -34,7 +34,6 @@ export class SupcategoryServiceService {
   //Delete sup category
   delete(id:any)
   {
-
     return this.http.delete(environment.URL+id);
   }
 }

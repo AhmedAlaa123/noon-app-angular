@@ -11,6 +11,10 @@ import { CreateSupcategoriesComponent } from '../SupCategory/create-supcategorie
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateComponent } from '../SupCategory/update/update.component';
 import { DashboardComponent } from 'src/Components/dashboard/dashboard.component';
+import { DelivercompanyComponent } from '../delivercompany/delivercompany.component';
+import { DelivercompanycreateComponent } from '../delivercompany/delivercompanycreate/delivercompanycreate.component';
+import { DelivercompanyupdateComponent } from '../delivercompany/delivercompanyupdate/delivercompanyupdate.component';
+import { DelivercompanydetailsComponent } from '../delivercompany/delivercompanydetails/delivercompanydetails.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +25,10 @@ import { DashboardComponent } from 'src/Components/dashboard/dashboard.component
     CreateSupcategoriesComponent,
     UpdateComponent,
     DashboardComponent,
+    DelivercompanyComponent,
+    DelivercompanycreateComponent,
+    DelivercompanyupdateComponent,
+    DelivercompanydetailsComponent
   ],
   imports: [
     BrowserModule,
