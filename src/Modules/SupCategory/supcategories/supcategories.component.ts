@@ -1,6 +1,8 @@
+
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { ISupCategory } from 'src/interfaces/SupCategoryIntefaces/SupCategory';
 import { SupcategoryServiceService } from 'src/Services/Supcategory/supcategory-service.service';
 
@@ -11,9 +13,13 @@ import { SupcategoryServiceService } from 'src/Services/Supcategory/supcategory-
 })
 export class SupcategoriesComponent implements OnInit {
 
-  constructor(private service:SupcategoryServiceService , private router:Router) { }
+  SupCtegories:ISupCategory[]=[];
+  
+  
+  constructor(private service:SupcategoryServiceService , private router:Router,private active:ActivatedRoute) { 
+   
+  }
 
-SupCtegories:ISupCategory[]=[];
 
   ngOnInit(): void {
     this.service.getsupcategories().subscribe(supdata=>{
@@ -37,7 +43,9 @@ SupCtegories:ISupCategory[]=[];
   {
     if (confirm("هل انت متأكد من هذة العملية؟")) {
       return this.service.delete(id).subscribe(response=>{
-        this.router.navigateByUrl('/dashboard');
+        this.service.getsupcategories().subscribe(supdata=>{
+          this.SupCtegories=supdata;
+        })
       })
     }
     return null;

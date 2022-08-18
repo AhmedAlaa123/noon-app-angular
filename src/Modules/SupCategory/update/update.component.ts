@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ISupCategory } from 'src/interfaces/SupCategoryIntefaces/SupCategory';
 import { SupcategoryServiceService } from 'src/Services/Supcategory/supcategory-service.service';
@@ -12,8 +12,6 @@ import { SupcategoryServiceService } from 'src/Services/Supcategory/supcategory-
 
 export class UpdateComponent implements OnInit {
   id:any;
-  data!:ISupCategory;
-
   constructor(private service:SupcategoryServiceService,private active:ActivatedRoute,private route:Router) {
     this.id=active.snapshot.paramMap.get("id");
    }
@@ -21,10 +19,15 @@ export class UpdateComponent implements OnInit {
   ngOnInit(): void {
     this.service.details(this.id).subscribe(data=>{
       this.updatedForm = new FormGroup({
-        subCategoryName:new FormControl(data['subCategoryName']),
+        subCategoryName:new FormControl(data['subCategoryName'],[Validators.required,Validators.minLength(3)]),
         subCategoryImage:new FormControl(data['subCategoryImage']),
       })
-  })    
+  })
+  console.log(this.id)    
+  }
+  get subCategoryName()
+  {
+    return this.updatedForm.get("subCategoryName");
   }
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {

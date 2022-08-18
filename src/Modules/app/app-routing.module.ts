@@ -14,6 +14,10 @@ import { CategoryPageComponent } from '../category-page/category-page.component'
 import { HomeComponent } from '../home/home.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { SubCategoryPageComponent } from '../sub-category-page/sub-category-page.component';
+import { DelivercompanyComponent } from '../delivercompany/delivercompany.component';
+import { DelivercompanycreateComponent } from '../delivercompany/delivercompanycreate/delivercompanycreate.component';
+import { DelivercompanydetailsComponent } from '../delivercompany/delivercompanydetails/delivercompanydetails.component';
+import { DelivercompanyupdateComponent } from '../delivercompany/delivercompanyupdate/delivercompanyupdate.component';
 import { CreateSupcategoriesComponent } from '../SupCategory/create-supcategories/create-supcategories.component';
 import { SupcategoriesComponent } from '../SupCategory/supcategories/supcategories.component';
 import { SupcategorydetailComponent } from '../SupCategory/supcategorydetail/supcategorydetail.component';
@@ -43,11 +47,14 @@ const routes: Routes = [
   {path:'sup/:id',component:SupcategorydetailComponent},
     
   {path:'update/:id',component:UpdateComponent},
-  {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard],
-      children:[ 
-        {path:'allsup',component:SupcategoriesComponent},
-        {path:'create',component:CreateSupcategoriesComponent}]
-  }
+  {path:'dashboard/allcompnies/create',component:DelivercompanycreateComponent},
+  {path:'dashboard/allcompnies/update/:id',component:DelivercompanyupdateComponent},
+  {path:'dashboard/allcompnies/details/:id',component:DelivercompanydetailsComponent},
+
+{path:'dashboard',component:DashboardComponent,
+children:[ {path:'allsup',component:SupcategoriesComponent},
+ {path:'allcompnies',component:DelivercompanyComponent}
+]}
 ];
 
 @NgModule({

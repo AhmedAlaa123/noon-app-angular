@@ -18,6 +18,10 @@ import { SupcategorydetailComponent } from '../SupCategory/supcategorydetail/sup
 import { CreateSupcategoriesComponent } from '../SupCategory/create-supcategories/create-supcategories.component';
 import { UpdateComponent } from '../SupCategory/update/update.component';
 import { DashboardComponent } from 'src/Components/dashboard/dashboard.component';
+import { DelivercompanyComponent } from '../delivercompany/delivercompany.component';
+import { DelivercompanycreateComponent } from '../delivercompany/delivercompanycreate/delivercompanycreate.component';
+import { DelivercompanyupdateComponent } from '../delivercompany/delivercompanyupdate/delivercompanyupdate.component';
+import { DelivercompanydetailsComponent } from '../delivercompany/delivercompanydetails/delivercompanydetails.component';
 import { CategoryPageModule } from '../category-page/category-page.module';
 import { SubCategoryPageModule } from '../sub-category-page/sub-category-page.module';
 import { ProductCardComponent } from '../category-page/components/product-card/product-card.component';
@@ -44,8 +48,10 @@ import { CartModule } from '../cart/cart.module';
     CreateSupcategoriesComponent,
     UpdateComponent,
     DashboardComponent,
-
- 
+    DelivercompanyComponent,
+    DelivercompanycreateComponent,
+    DelivercompanyupdateComponent,
+    DelivercompanydetailsComponent
   ],
   imports: [
     BrowserModule,
