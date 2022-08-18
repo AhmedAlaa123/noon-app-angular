@@ -24,6 +24,8 @@ import { ProductCardComponent } from '../category-page/components/product-card/p
 import { ProductsContanerComponent } from '../category-page/components/products-contaner/products-contaner.component';
 import { SliderComponent } from './components/slider/slider.component';
 import { BannerComponent } from '../home/components/banner/banner.component';
+import { ProductDetailsModule } from '../product-details/product-details.module';
+import { CartModule } from '../cart/cart.module';
 
 
 @NgModule({
@@ -42,8 +44,7 @@ import { BannerComponent } from '../home/components/banner/banner.component';
     CreateSupcategoriesComponent,
     UpdateComponent,
     DashboardComponent,
-   SliderComponent,
-   BannerComponent
+
  
   ],
   imports: [
@@ -53,7 +54,9 @@ import { BannerComponent } from '../home/components/banner/banner.component';
     AuthModule, 
     HomeModule,
     SubCategoryPageModule,
-    CategoryPageModule
+    CategoryPageModule,
+    ProductDetailsModule,
+    CartModule
 
   ],
   providers: [],

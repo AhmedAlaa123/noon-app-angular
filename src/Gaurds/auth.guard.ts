@@ -23,8 +23,10 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.isLogged) {
+      // return true;
       if (this.userRoles.includes(Roles.Admin))
-        return true;
+      return true;
+
       else {
         this.route.navigate(['/']) // navigate to home page if user is not Admin
         return false

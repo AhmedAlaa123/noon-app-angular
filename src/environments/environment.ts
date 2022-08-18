@@ -7,8 +7,8 @@ export const environment = {
   production: false,
   BaseUrl:BaseURl,
   SubCategoriesImagesURL:`${ImagesURL}/subCategoryImages/`,
-  ProductsImagesURL:`${ImagesURL}/subCategoryImages/`,
-  CompaniesImagesURL:`${ImagesURL}/subCategoryImages/`,
+  ProductsImagesURL:`${ImagesURL}/ProductsImages/`,
+  CompaniesImagesURL:`${ImagesURL}/CompaniesImages/`,
   
 };
 

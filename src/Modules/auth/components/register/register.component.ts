@@ -26,24 +26,24 @@ export class RegisterComponent implements OnInit {
     streetIsValid: true,
 
   }
-  Errors:string[]=[]
-  AccountCreated:boolean=false;
-  constructor(private authService: AuthService, private registerFormBuilder: FormBuilder,private router:Router) {
+  Errors: string[] = []
+  AccountCreated: boolean = false;
+  constructor(private authService: AuthService, private registerFormBuilder: FormBuilder, private router: Router) {
 
 
   }
 
   ngOnInit(): void {
-    console.log(this.authService.GetAllusers().subscribe(data=>{
+    console.log(this.authService.GetAllusers().subscribe(data => {
       console.log(data)
-    },error=>console.log(error)))
+    }, error => console.log(error)))
     this.registerFrom = this.registerFormBuilder.group(
       {
         firstName: ['', [Validators.minLength(3), Validators.maxLength(20), Validators.required]],
         lastName: ['', [Validators.minLength(3), Validators.maxLength(20), Validators.required]],
         email: ['', [Validators.email, Validators.required]],
         userName: ['', [Validators.required, Validators.minLength(8)]],
-        phoneNumber: ['', [Validators.required,Validators.pattern("^[0-9]{11}$")]],
+        phoneNumber: ['', [Validators.required, Validators.pattern("^[0-9]{11}$")]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]],
         country: ['', [Validators.required]],
@@ -75,40 +75,40 @@ export class RegisterComponent implements OnInit {
       lastName: this.LastName?.value,
       email: this.Email?.value,
       userName: this.UserName?.value,
-      phoneNumber:this.PhoneNumber?.value,
+      phoneNumber: this.PhoneNumber?.value,
       password: this.Password?.value,
       country: this.Country?.value,
       city: this.City?.value,
       street: this.Street?.value,
     }
     // post new user to backend
-    this.Errors=[]
-    this.authService.Register(registerUser).subscribe(data=>{
-      
+    this.Errors = []
+    this.authService.Register(registerUser).subscribe(data => {
+
       // user login by save token in localstorage
       localStorage.setItem(TokenEnum.Token, data.token);
       localStorage.setItem(TokenEnum.Expiration, data.expiration)
-      this.authService.isLogged.next(true)
+      this.authService.isLogged.next(true) 
       // navigate to home page
-      this.router.navigate(['/'])
-    },exception=>{
-      console.log(exception);
-      if(exception.error.errors){
-      for(let key in exception.error.errors)
-      {
-        for(let val of exception.error.errors[key])
-        this.Errors.push(val)
-      }
-    }else{
-      this.Errors.push(exception.error)
-    }
-
-    },()=>{
-      // console.log('completed')
       this.AccountCreated = true;
       setTimeout(() => {
         this.AccountCreated = false
+        this.router.navigate(['/']) // go to home page
       }, 3000);
+    }, exception => {
+      console.log(exception);
+      if (exception.error.errors) {
+        for (let key in exception.error.errors) {
+          for (let val of exception.error.errors[key])
+            this.Errors.push(val)
+        }
+      } else {
+        this.Errors.push(exception.error)
+      }
+
+    }, () => {
+      // console.log('completed')
+
     })
 
   }

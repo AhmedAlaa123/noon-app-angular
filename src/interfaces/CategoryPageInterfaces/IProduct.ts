@@ -1,5 +1,4 @@
 export interface IProduct{
-    
         id: string,
         name: string
         companyName: string,
@@ -7,7 +6,6 @@ export interface IProduct{
         description: string
         productImages: string,
         cateId:string,
-        subCateId: string
-
-    
+        subCateId: string,
+        discount:number
 }

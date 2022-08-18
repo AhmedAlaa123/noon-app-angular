@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { TokenEnum } from 'src/Enums/AuthEnums/AuthEnums';
+import { Roles, TokenEnum } from 'src/Enums/AuthEnums/AuthEnums';
 import { ILoginUser } from 'src/interfaces/AuthInterfaces/ILoginUser';
 import { AuthService } from 'src/Services/AuthService/auth.service';
 
@@ -18,8 +18,9 @@ export class LoginComponent implements OnInit {
   isvalidUser: boolean = true;
   isvalidPassword: boolean = true;
   islogined: boolean = false;
-  constructor(private authService: AuthService, private loginFormBuilder: FormBuilder,private router:Router) {
-
+  private userRoles:string[]=[]
+  constructor(private authService: AuthService, private loginFormBuilder: FormBuilder, private router: Router) {
+    this.authService.userRoles.subscribe(roles=>this.userRoles=roles);
   }
 
 
@@ -61,14 +62,27 @@ export class LoginComponent implements OnInit {
       userName: this.loginForm.get('userName')?.value,
       password: this.loginForm.get('password')?.value
     }
-    this.authService.Login(loginUser).subscribe(data => {
+    this.authService.Login(loginUser).subscribe(async data => {
       this.loginForm.get('error')?.setValue('')
       // console.log(data.token)
-      localStorage.setItem(TokenEnum.Token, data.token);
-      localStorage.setItem(TokenEnum.Expiration, data.expiration)
+      sessionStorage.setItem(TokenEnum.Token,data.token)
+      // localStorage.setItem(TokenEnum.Token, data.token);
+      sessionStorage.setItem(TokenEnum.Expiration, data.expiration)
       this.authService.isLogged.next(true)
       // navigate to home page
-      this.router.navigate(['/'])
+      this.islogined = true;
+      await setTimeout(() => {
+        this.islogined = false
+        if(this.userRoles.includes(Roles.Admin))
+        {
+      // navigate Admin dashboard 
+
+         this.router.navigate(['/dashboard'])
+          return;
+        }
+      // navigate to home page
+        this.router.navigate(['/'])
+      }, 3000);
 
     }, error => {
       if (error.error.errors) {
@@ -84,12 +98,9 @@ export class LoginComponent implements OnInit {
         this.loginForm.get('error')?.setValue(error.error)
       }
 
-    },()=>{
+    }, () => {
       // when request is completed
-      this.islogined = true;
-      setTimeout(() => {
-        this.islogined = false
-      }, 3000);
+
     })
   }
 

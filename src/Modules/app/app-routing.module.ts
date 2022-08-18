@@ -8,9 +8,11 @@ import { AddRolesToUserComponent } from '../auth/components/add-roles-to-user/ad
 import { AllusersComponent } from '../auth/components/allusers/allusers.component';
 import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
+import { CartComponent } from '../cart/cart.component';
 import { CategoryPageComponent } from '../category-page/category-page.component';
 
 import { HomeComponent } from '../home/home.component';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { SubCategoryPageComponent } from '../sub-category-page/sub-category-page.component';
 import { CreateSupcategoriesComponent } from '../SupCategory/create-supcategories/create-supcategories.component';
 import { SupcategoriesComponent } from '../SupCategory/supcategories/supcategories.component';
@@ -29,23 +31,23 @@ const routes: Routes = [
         path: 'account', component: AuthComponent, children: [
         { path: 'login', component: LoginComponent },
         { path: 'register', component: RegisterComponent },
-        {path:'Getallusers', component:AllusersComponent},
+        {path:'Getallusers', component:AllusersComponent,canActivate:[AuthGuard]},
         {path:'addRoleToUser',component:AddRolesToUserComponent,canActivate:[AuthGuard]}
     ]
   },
   { path:'category/:id',component:CategoryPageComponent},
-  {
-    path:'subcategory/:id',component:SubCategoryPageComponent
-  },
-    {path:'header',component:HeaderComponent},
-    {path:'sup/:id',component:SupcategorydetailComponent},
+  {path:'subcategory/:id',component:SubCategoryPageComponent},
+  {path:'product/:id',component:ProductDetailsComponent},
+  {path:'cart',component:CartComponent},
+  {path:'header',component:HeaderComponent},
+  {path:'sup/:id',component:SupcategorydetailComponent},
     
-    {path:'update/:id',component:UpdateComponent},
-    {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard],
+  {path:'update/:id',component:UpdateComponent},
+  {path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard],
       children:[ 
         {path:'allsup',component:SupcategoriesComponent},
         {path:'create',component:CreateSupcategoriesComponent}]
-}
+  }
 ];
 
 @NgModule({

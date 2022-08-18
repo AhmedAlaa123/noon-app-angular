@@ -4,7 +4,7 @@ export const environment = {
   production: true,
   BaseUrl:BaseURl,
   SubCategoriesImagesURL:`${ImagesURL}/subCategoryImages/`,
-  ProductsImagesURL:`${ImagesURL}/subCategoryImages/`,
-  CompaniesImagesURL:`${ImagesURL}/subCategoryImages/`,
+  ProductsImagesURL:`${ImagesURL}/ProductsImages/`,
+  CompaniesImagesURL:`${ImagesURL}/CompaniesImages/`,
 };
 

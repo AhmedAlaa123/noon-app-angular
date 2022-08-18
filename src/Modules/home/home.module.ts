@@ -23,7 +23,9 @@ import { ProductsContanerComponent } from './components/products-contaner/produc
     HomeDiscountsContainerComponent,
     HomeDiscountItemComponent,
     ProductCardComponent,
-    ProductsContanerComponent
+    ProductsContanerComponent,
+    SliderComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule
