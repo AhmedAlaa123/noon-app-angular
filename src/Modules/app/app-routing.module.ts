@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from 'src/Components/dashboard/dashboard.component';
-import { HeaderComponent } from 'src/Components/header/header.component';
 import { AuthGuard } from 'src/Gaurds/auth.guard';
 import { AuthComponent } from '../auth/auth.component';
 import { AddRolesToUserComponent } from '../auth/components/add-roles-to-user/add-roles-to-user.component';
@@ -18,12 +17,13 @@ import { DelivercompanyComponent } from '../delivercompany/delivercompany.compon
 import { DelivercompanycreateComponent } from '../delivercompany/delivercompanycreate/delivercompanycreate.component';
 import { DelivercompanydetailsComponent } from '../delivercompany/delivercompanydetails/delivercompanydetails.component';
 import { DelivercompanyupdateComponent } from '../delivercompany/delivercompanyupdate/delivercompanyupdate.component';
-import { CreateSupcategoriesComponent } from '../SupCategory/create-supcategories/create-supcategories.component';
 import { SupcategoriesComponent } from '../SupCategory/supcategories/supcategories.component';
 import { SupcategorydetailComponent } from '../SupCategory/supcategorydetail/supcategorydetail.component';
 import { UpdateComponent } from '../SupCategory/update/update.component';
+// import { SigninComponent } from '../auth/components/signin/signin.component';
 
 const routes: Routes = [
+  // { path: 'signin', component: LoginComponent },
   {
     path:'',component:HomeComponent
   },
@@ -32,7 +32,8 @@ const routes: Routes = [
   }
   ,
   {
-        path: 'account', component: AuthComponent, children: [
+    path: 'account', component: AuthComponent, children: [
+          // { path: 'signin', component: SigninComponent },
         { path: 'login', component: LoginComponent },
         { path: 'register', component: RegisterComponent },
         {path:'Getallusers', component:AllusersComponent,canActivate:[AuthGuard]},
@@ -43,7 +44,7 @@ const routes: Routes = [
   {path:'subcategory/:id',component:SubCategoryPageComponent},
   {path:'product/:id',component:ProductDetailsComponent},
   {path:'cart',component:CartComponent},
-  {path:'header',component:HeaderComponent},
+  // {path:'header',component:HeaderComponent},
   {path:'sup/:id',component:SupcategorydetailComponent},
     
   {path:'update/:id',component:UpdateComponent},
@@ -51,10 +52,13 @@ const routes: Routes = [
   {path:'dashboard/allcompnies/update/:id',component:DelivercompanyupdateComponent},
   {path:'dashboard/allcompnies/details/:id',component:DelivercompanydetailsComponent},
 
-{path:'dashboard',component:DashboardComponent,
-children:[ {path:'allsup',component:SupcategoriesComponent},
- {path:'allcompnies',component:DelivercompanyComponent}
-]}
+  {
+      path:'dashboard',component:DashboardComponent,
+      children:[ 
+        {path:'allsup',component:SupcategoriesComponent},
+        {path:'allcompnies',component:DelivercompanyComponent}
+        ]
+    }
 ];
 
 @NgModule({

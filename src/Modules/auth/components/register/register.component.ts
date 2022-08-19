@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
   Errors: string[] = []
   AccountCreated: boolean = false;
-  constructor(private authService: AuthService, private registerFormBuilder: FormBuilder, private router: Router) {
+  constructor(private authService:AuthService,  private registerFormBuilder: FormBuilder, private router: Router) {
 
 
   }

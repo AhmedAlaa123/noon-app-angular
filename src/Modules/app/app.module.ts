@@ -24,13 +24,10 @@ import { DelivercompanyupdateComponent } from '../delivercompany/delivercompanyu
 import { DelivercompanydetailsComponent } from '../delivercompany/delivercompanydetails/delivercompanydetails.component';
 import { CategoryPageModule } from '../category-page/category-page.module';
 import { SubCategoryPageModule } from '../sub-category-page/sub-category-page.module';
-import { ProductCardComponent } from '../category-page/components/product-card/product-card.component';
-import { ProductsContanerComponent } from '../category-page/components/products-contaner/products-contaner.component';
-import { SliderComponent } from './components/slider/slider.component';
-import { BannerComponent } from '../home/components/banner/banner.component';
 import { ProductDetailsModule } from '../product-details/product-details.module';
+// import { CartModule } from '../cart/cart.module';
 import { CartModule } from '../cart/cart.module';
-
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +48,8 @@ import { CartModule } from '../cart/cart.module';
     DelivercompanyComponent,
     DelivercompanycreateComponent,
     DelivercompanyupdateComponent,
-    DelivercompanydetailsComponent
+    DelivercompanydetailsComponent,
+    CreateProductComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +61,7 @@ import { CartModule } from '../cart/cart.module';
     CategoryPageModule,
     ProductDetailsModule,
     CartModule
+
 
   ],
   providers: [],

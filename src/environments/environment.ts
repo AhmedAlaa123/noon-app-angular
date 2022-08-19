@@ -9,6 +9,7 @@ export const environment = {
   SubCategoriesImagesURL:`${ImagesURL}/subCategoryImages/`,
   ProductsImagesURL:`${ImagesURL}/ProductsImages/`,
   CompaniesImagesURL:`${ImagesURL}/CompaniesImages/`,
+  url:"https://localhost:5200/api/DeliverCompany/"
   
 };
 

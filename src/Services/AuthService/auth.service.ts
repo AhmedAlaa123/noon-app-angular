@@ -14,10 +14,11 @@ import { IUserRole } from 'src/interfaces/AuthInterfaces/IUserRole';
 export class AuthService {
 
   public isLogged: BehaviorSubject<boolean>={} as BehaviorSubject<boolean>;
-  public userRoles: BehaviorSubject<string[]>={} as BehaviorSubject<string[]>;
+  public userRoles: BehaviorSubject<string[]>;
   baseUrl: string = 'https://localhost:5200/api/Account/'
 
   constructor(private httpClinet: HttpClient) {
+    this.userRoles=new BehaviorSubject<string[]>([]);
     this.init();
   }
   private init()

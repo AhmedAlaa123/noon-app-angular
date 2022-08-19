@@ -35,6 +35,6 @@ export class SupcategoryServiceService {
   //Delete sup category
   delete(id:any)
   {
-    return this.http.delete(environment.URL+id);
+    return this.http.delete(environment.url+id);
   }
 }
