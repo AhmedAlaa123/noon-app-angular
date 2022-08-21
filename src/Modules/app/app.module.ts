@@ -28,6 +28,10 @@ import { ProductDetailsModule } from '../product-details/product-details.module'
 // import { CartModule } from '../cart/cart.module';
 import { CartModule } from '../cart/cart.module';
 import { CreateProductComponent } from './components/create-product/create-product.component';
+import { ProductComponent } from './components/product/product.component';
+import { CategoryComponent } from './components/category/category.component';
+import { AllCateoriesComponent } from './components/all-cateories/all-cateories.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,11 @@ import { CreateProductComponent } from './components/create-product/create-produ
     DelivercompanycreateComponent,
     DelivercompanyupdateComponent,
     DelivercompanydetailsComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    ProductComponent,
+    CategoryComponent,
+    AllCateoriesComponent,
+    AddCategoryComponent
   ],
   imports: [
     BrowserModule,

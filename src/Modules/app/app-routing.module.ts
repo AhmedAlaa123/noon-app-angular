@@ -9,7 +9,6 @@ import { LoginComponent } from '../auth/components/login/login.component';
 import { RegisterComponent } from '../auth/components/register/register.component';
 import { CartComponent } from '../cart/cart.component';
 import { CategoryPageComponent } from '../category-page/category-page.component';
-
 import { HomeComponent } from '../home/home.component';
 import { ProductDetailsComponent } from '../product-details/product-details.component';
 import { SubCategoryPageComponent } from '../sub-category-page/sub-category-page.component';
@@ -20,6 +19,10 @@ import { DelivercompanyupdateComponent } from '../delivercompany/delivercompanyu
 import { SupcategoriesComponent } from '../SupCategory/supcategories/supcategories.component';
 import { SupcategorydetailComponent } from '../SupCategory/supcategorydetail/supcategorydetail.component';
 import { UpdateComponent } from '../SupCategory/update/update.component';
+import { ProductComponent } from './components/product/product.component';
+import { CategoryComponent } from './components/category/category.component';
+import { AllCateoriesComponent } from './components/all-cateories/all-cateories.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
 // import { SigninComponent } from '../auth/components/signin/signin.component';
 
 const routes: Routes = [
@@ -49,14 +52,25 @@ const routes: Routes = [
     
   {path:'update/:id',component:UpdateComponent},
   {path:'dashboard/allcompnies/create',component:DelivercompanycreateComponent},
-  {path:'dashboard/allcompnies/update/:id',component:DelivercompanyupdateComponent},
-  {path:'dashboard/allcompnies/details/:id',component:DelivercompanydetailsComponent},
-
+  // {path:'dashboard/allcompnies/update/:id',component:DelivercompanyupdateComponent},
+  // {path:'dashboard/allcompnies/details/:id',component:DelivercompanydetailsComponent},
   {
       path:'dashboard',component:DashboardComponent,
+
       children:[ 
-        {path:'allsup',component:SupcategoriesComponent},
-        {path:'allcompnies',component:DelivercompanyComponent}
+            {path:'allsup',component:SupcategoriesComponent},
+            {path:'allcompnies',component:DelivercompanyComponent,
+              children:[
+                // {path:'create',component:DelivercompanycreateComponent},
+                {path:'update/:id',component:DelivercompanyupdateComponent},
+                {path:'details/:id',component:DelivercompanydetailsComponent},
+              ]
+            },
+            { path:'products',component:ProductComponent } ,
+            {path:'categories',component:CategoryComponent,children:[
+              {path:'all',component:AllCateoriesComponent},
+              {path:'add',component:AddCategoryComponent},
+            ]}
         ]
     }
 ];

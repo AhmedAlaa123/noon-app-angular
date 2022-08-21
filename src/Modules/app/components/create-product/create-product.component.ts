@@ -12,19 +12,19 @@ export class CreateProductComponent implements OnInit {
   constructor(private formGroupBuilder:FormBuilder) {
 
     this.productForm=this.formGroupBuilder.group({
-      'name':['',[Validators.required]],
-      'price':['',[Validators.required]],
-       'description':['',[Validators.required]],
-       'companyName':['',[Validators.required] ],
-       'subCategoryName':['',[Validators.required]],
-       'productImage':['',[Validators.required]]
-
+        'name':['',[Validators.required]],
+        'price':['',[Validators.required]],
+        'description':['',[Validators.required]],
+        'companyName':['',[Validators.required] ],
+        'subCategoryName':['',[Validators.required]],
+        'productImage':['',[Validators.required]]
     })
 
    }
 
-  ngOnInit(): void {
-   
+  ngOnInit(): void 
+  {
+    
   }
 
 }

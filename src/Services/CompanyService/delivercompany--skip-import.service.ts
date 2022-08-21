@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TokenEnum } from 'src/Enums/AuthEnums/AuthEnums';
 import { environment } from 'src/environments/environment';
 import { IDeliverCompany } from 'src/interfaces/DeliverCompany/DeliverCompany';
 
@@ -23,7 +24,7 @@ export class DelivercompanySkipImportService {
    //create DeliverCompany
    createcompany(model:any):Observable<any>
    {
-     return this.http.post<any>(`${environment.url}AddNew`,model);
+     return this.http.post<any>(`${environment.url}AddNew`,model,{headers:this.Header});
    }
   
    update(id:IDeliverCompany,item:any)
@@ -35,4 +36,12 @@ export class DelivercompanySkipImportService {
    {
      return this.http.delete(environment.url+id);
    }
+
+   private get Header() {
+    var token = sessionStorage.getItem(TokenEnum.Token);
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': `${token}`
+    });
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICartProduct } from 'src/interfaces/CartInterfaces/ICartProduct';
-import { IProduct } from 'src/interfaces/CategoryPageInterfaces/IProduct';
+// import { IProduct } from 'src/interfaces/CategoryPageInterfaces/IProduct';
 import { IOrder, IOrderProduct } from 'src/interfaces/OrderInterfaces/IOrder';
 import { AuthService } from 'src/Services/AuthService/auth.service';
 import { CartService } from 'src/Services/CartService/cart.service';
