@@ -16,15 +16,16 @@ orderUrl:string=`${environment.BaseUrl}order/`
 
    AddNewOrder(order:IOrder):Observable<any>
    {
+      console.log(`${this.orderUrl}addnew`)
       return this.httpClient.post(`${this.orderUrl}addnew`,order,{headers:this.Header})
    }
 
    private get Header(){
-    const token=localStorage.getItem(TokenEnum.Token) as string
+    const token=sessionStorage.getItem(TokenEnum.Token) as string
     return new HttpHeaders({
       'Content-Type': 'application/json',
       'token':token,
-      'Authorization': `Bearer ${token}`
+      // 'Authorization': `Bearer ${token}`
 
     })
    }

@@ -23,6 +23,7 @@ import { ProductComponent } from './components/product/product.component';
 import { CategoryComponent } from './components/category/category.component';
 import { AllCateoriesComponent } from './components/all-cateories/all-cateories.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { CreateSupcategoriesComponent } from '../SupCategory/create-supcategories/create-supcategories.component';
 // import { SigninComponent } from '../auth/components/signin/signin.component';
 
 const routes: Routes = [
@@ -55,10 +56,13 @@ const routes: Routes = [
   // {path:'dashboard/allcompnies/update/:id',component:DelivercompanyupdateComponent},
   // {path:'dashboard/allcompnies/details/:id',component:DelivercompanydetailsComponent},
   {
-      path:'dashboard',component:DashboardComponent,
+      path:'dashboard',component:DashboardComponent,canActivate:[AuthGuard],
 
       children:[ 
-            {path:'allsup',component:SupcategoriesComponent},
+            {path:'allsup',component:SupcategoriesComponent,
+
+            },
+            {path:'allsup/create',component:CreateSupcategoriesComponent},
             {path:'allcompnies',component:DelivercompanyComponent,
               children:[
                 // {path:'create',component:DelivercompanycreateComponent},

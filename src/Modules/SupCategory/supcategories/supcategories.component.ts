@@ -37,7 +37,7 @@ export class SupcategoriesComponent implements OnInit {
   }
   gotocreate()
   {
-    this.router.navigate(['/dashboard/create'])
+    this.router.navigate(['/dashboard/allsup/create'])
   }
   delete(id:any)
   {

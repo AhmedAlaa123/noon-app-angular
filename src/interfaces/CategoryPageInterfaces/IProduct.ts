@@ -4,7 +4,7 @@ export interface IProduct{
         companyName: string,
         price: number,
         description: string
-        productImages: string,
+        productImage: string,
         cateId:string,
         subCateId: string,
         discount:number

@@ -25,7 +25,7 @@ export class SupcategoryServiceService {
   //create sup category
   create(model:any):Observable<any>
   {
-    return this.http.post<any>(this.url,model);
+    return this.http.post<any>(this.url+'addNewSub',model);
   }
   
   update(id:ISupCategory,item:any)

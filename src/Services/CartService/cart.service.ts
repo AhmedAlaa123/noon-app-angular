@@ -28,14 +28,14 @@ export class CartService {
       const index=this.CartStore.value.findIndex(pro=>pro.product.id==newproduct.id)
       if(index<0)
       {
-        this.CartStore.next([...this.CartStore.value,{product:newproduct,Quantity:1}]);
-      }else{
-        this.CartStore.value[index].Quantity++;
-        this.CartStore.next([...this.CartStore.value])
-
+          this.CartStore.next([...this.CartStore.value,{product:newproduct,Quantity:1}]);
+      }
+      else
+      {
+          this.CartStore.value[index].Quantity++;// 
+          this.CartStore.next([...this.CartStore.value]);
       }
  
-
   }
 
   HandelProductQunatity(cartProduct:ICartProduct)

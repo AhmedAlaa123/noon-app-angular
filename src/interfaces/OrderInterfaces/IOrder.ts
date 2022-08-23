@@ -1,5 +1,5 @@
 export interface IOrder{
-    orderDate:string,
+    // orderDate:string,
     products:IOrderProduct[]
 }
 

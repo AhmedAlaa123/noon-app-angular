@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
   CalcTotal() {
     this.cartTotalMony = 0;
     this.CartProducts.forEach(cartProduct => {
-      this.cartTotalMony += (cartProduct.product.price - (cartProduct.product.price * cartProduct.product.discount/100)) * cartProduct.Quantity;
+      this.cartTotalMony += cartProduct.product.price *cartProduct.Quantity;
     })
   }
   HanderOrderNow() {
@@ -45,24 +45,22 @@ export class CartComponent implements OnInit {
           return
       }
     const order: IOrder = {
-      orderDate: new Date().toLocaleDateString(),
-      products: []
+      // orderDate: new Date().toLocaleDateString(),
+      products: [] as IOrderProduct[]
     }
-    console.log(order)
     this.CartProducts.forEach(cartProduct => {
       order.products.push(
         { 
-        productId: cartProduct.product.id,
-        quantity: cartProduct.Quantity
-       });
-    })
+          productId: cartProduct.product.id,
+          quantity: cartProduct.Quantity
+        });
+      })
+      console.log(order)
     //console.log(order,'order')
     this.orderService.AddNewOrder(order).subscribe(response=>{
-      console.log(response)
-    },error=>{
-      console.log(error)
-    },()=>{
-      alert('تم تنفيذ طلبك')
+     alert('تم انشاء الطلب');
+     // clear Cart
+     this.cartService.CartStore.next([]);
     })
   }
 

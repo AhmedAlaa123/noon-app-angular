@@ -14,18 +14,24 @@ export class CartProductItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  HandelQuantityChange(quantity:string)
+  HandelQuantityChange(quantity:any)
   {
 
-    const quantityNumber=parseInt(quantity)
-    if(quantityNumber>0){
+    const quantityNumber=parseInt(quantity.value)
+    if(quantityNumber==0)
+    {
+      if(confirm('هل انت متاكد انك تريد ازاله العنصر')){
+        this.cartService.RemoveProductFromCart(this.CartProduct.product);
+       }else{
+        quantity.value='1'
+       }
+
+    }
+    if(quantityNumber>1){
       this.CartProduct.Quantity=quantityNumber
       this.cartService.HandelProductQunatity(this.CartProduct)
     }
-      else
-      {
-        this.cartService.RemoveProductFromCart(this.CartProduct.product); 
-      }
+     
       this.changeQuantityEmmiter.emit();
       
   }

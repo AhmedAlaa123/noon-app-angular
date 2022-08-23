@@ -17,7 +17,7 @@ export class ProductService {
   }
 
   AddProduct(product:any) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'Application/json' }) };
+    // const httpOptions = { headers: new HttpHeaders({ 'Content-Type': undefined}) };
     console.log(product)
     return this.http.post(this.url + '/addnewpro', product, {headers:this.Header})
 
@@ -36,7 +36,6 @@ export class ProductService {
   private get Header() {
     var token = sessionStorage.getItem(TokenEnum.Token);
     return new HttpHeaders({
-      'Content-Type': 'application/json',
       'token': `${token}`
     });
   }

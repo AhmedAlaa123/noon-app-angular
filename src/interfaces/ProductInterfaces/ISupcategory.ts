@@ -1,3 +1,4 @@
 export interface ISupCategory{
-    subCategoryName:string
+    subCategoryName:string,
+    subCategoryId:string
 }

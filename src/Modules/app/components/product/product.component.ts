@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { ISubCategory } from 'src/interfaces/HomeInterfaces/ISubCategory';
 import { ProductService } from 'src/Services/ProductService/product.service';
 import { ICategory } from '../../../../interfaces/HomeInterfaces/ICategory';
-import { ICompany } from '../../../../interfaces/ProductInterfaces/ICompany';
+// import { ICompany } from '../../../../interfaces/ProductInterfaces/ICompany';
 import { IProductAdd } from '../../../../interfaces/ProductInterfaces/IProductAdd';
 import { IProductupdateordel } from '../../../../interfaces/ProductInterfaces/IProductUpdateorDel';
-import { ISupCategory } from '../../../../interfaces/ProductInterfaces/ISupcategory';
+
 // import { ProductService } from '../product.service';
 
 @Component({
@@ -16,13 +17,14 @@ import { ISupCategory } from '../../../../interfaces/ProductInterfaces/ISupcateg
 })
 export class ProductComponent implements OnInit {
   Categories: ICategory[] = []
-  SupCategories: ISupCategory[] = []
+  SupCategories: ISubCategory[] = []  as ISubCategory[]
   Companies: any
+  file:File={} as File
   constructor(private productservice: ProductService, private fb: FormBuilder, private http: HttpClient, private productService: ProductService) {
 
     this.getCompanies();
     this.getCategories();
-    this.getSupCategories();
+    // this.getSupCategories();
   }
 
   productForm = this.fb.group({
@@ -32,8 +34,7 @@ export class ProductComponent implements OnInit {
     companyName: [''],
     categoryName: [''],
     supCategoryName: [''],
-    productimage: [''],
-    token: ['']
+    
   })
   ngOnInit(): void {
   }
@@ -44,77 +45,86 @@ export class ProductComponent implements OnInit {
     return this.productForm.get('productimage') ;
   }
 
-  getSupCategories() {
-    this.http.get<ISupCategory[]>('https://localhost:5200/api/SubCategory/getall').subscribe(data => this.SupCategories = data)
-  }
+  // getSupCategories() {
+  //   this.http.get<ISupCategory[]>('https://localhost:5200/api/SubCategory/getall').subscribe(data => this.SupCategories = data)
+  // }
   getCategories() {
     this.http.get<ICategory[]>('https://localhost:5200/api/Category/All').subscribe(data => this.Categories = data)
   }
-  // product: IProductAdd = {
-  //   name: '',
-  //   price: '',
-  //   productImages: {},
-  //   description: '',
-  //   companyName: '',
-  //   supCategoryName: '',
-  //   categoryName: '',
-    
-  // }
+  product: IProductAdd = {} as IProductAdd
   get productName() {
     return this.productForm.get('name');
   }
   productList: IProductupdateordel[] = []
+
   onFileSelect(event:any) {
     if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.productForm.get('productimage')?.setValue(file);
+
+      // const myevent=event.target as HTMLInputElement
+      let file = event.target.files[0];
+      // this.productForm.get('productimage')?.setValue(file);
+      this.file=file
+      this.productForm.patchValue({
+        productimage:file
+      })
+      this.productForm.get('productimage')?.updateValueAndValidity();
     }
   }
+
+
+  handelCategoryChange(){
+    const Category=this.Categories.find(cate=>cate.id==this.productForm.get('categoryName')?.value.toString())
+    if(Category)
+    this.SupCategories=Category.subCategories 
+    console.log(this.SupCategories)
+  }
+
   postData() {
-    // this.product.name = this.productName?.value;
-    // this.product.price = this.productForm.get('price')?.value;
-    // this.product.description = this.productForm.get('description')?.value;
-    // this.product.companyName = this.productForm.get('companyName')?.value;
-    // this.product.categoryName = this.productForm.get('categoryName')?.value;
-    // this.product.supCategoryName = this.productForm.get('supCategoryName')?.value;
-    //   this.product.productImages=this.productImage?.value;
+    // this.product.Name = this.productName?.value;
+    // this.product.Price = this.productForm.get('price')?.value;
+    // this.product.Description = this.productForm.get('Description')?.value;
+    // this.product.CompanyName = this.productForm.get('companyName')?.value;
+    // this.product.CategoryName = this.productForm.get('categoryName')?.value;
+    // this.product.SupCategoryName = this.productForm.get('supCategoryName')?.value;
+    // this.product.ProductImage=this.productImage?.value;
 
 
     // this.product.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJFYnJhaGVtIiwianRpIjoiZTAzNWQyMjUtYjYwYy00OWEyLWExMzgtYTgxMDYwODJmNDBjIiwiZW1haWwiOiJlZUBnbS5jb20iLCJyb2xlcyI6WyJVU0VSIiwiQWRtaW4iXSwiZXhwIjoxNjYwNjkzMzk5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo1MjAwLztodHRwczovL2xvY2FsaG9zdDo0NDAzOS8iLCJhdWQiOiJodHRwOi8vbG9jYWxob3N0OjQyMDAvIn0.mLWn40Zsmq_tnKwm5Kit0eqLxv3zVLQRBg6m7iGkVVk'
     const formData = new FormData();
-    // formData.append('image', this.productForm.get('productimages')?.value);
-    formData.append('productImage', this.productForm.get('productimage')?.value);
-    formData.append('name', this.productForm.get('name')?.value);
-    formData.append('Description', this.productForm.get('description')?.value);
-    formData.append('CompanyName', this.productForm.get('companyName')?.value);
-    formData.append('CategoryName', this.productForm.get('categoryName')?.value);
-    formData.append('subCategoryName', this.productForm.get('subCategoryName')?.value);
-    console.log(this.productForm.value)
-    console.log(formData)
-    this.productService.AddProduct(formData).subscribe(data => { console.log(data) })
+    // formData.append('image', this.productForm.get('productimages')?.value,this.file.name);
+    formData.append('Productimage', this.file,this.file.name);
+    formData.append('Name', this.productForm.get('name')?.value);
+    formData.append('Price', this.productForm.get('price')?.value);
+    formData.append('Description', this.productForm.get('Description')?.value);
+    formData.append('CompanyId', this.productForm.get('companyName')?.value);
+    formData.append('CategoryId', this.productForm.get('categoryName')?.value);
+    formData.append('SupCategoryId', this.productForm.get('supCategoryName')?.value)
+    // formData.forEach((vale,key)=>console.log(vale,key))
+    // console.log(this.productForm.value)
+    // console.log(formData)
+    this.productService.AddProduct(formData).subscribe(
+      data => {
+         console.log(data)
+         alert('تم اضافه المنتج بنجاح')
+         },
+    error=>{
+      console.log(error)
+    },()=>{
+    })
   }
   getAllProducts() {
     this.productservice.getAll().subscribe(data => this.productList = data, err => console.log(err));
   }
-  item: IProductAdd = {
-    name: '',
-    price: '',
-    productImages: [''],
-    description: '',
-    companyName: '',
-    supCategoryName: '',
-    categoryName: '',
-    token: ''
-  }
-  update(id: any) {
-    this.item.name = this.productName?.value;
-    this.item.price = this.productForm.get('price')?.value;
-    this.item.description = this.productForm.get('description')?.value;
-    this.item.companyName = this.productForm.get('companyName')?.value;
-    this.item.categoryName = this.productForm.get('categoryName')?.value;
-    this.item.supCategoryName = this.productForm.get('supCategoryName')?.value;
-    this.productservice.updateProduct(id, this.item).subscribe(data => { console.log(data) }, err => console.log(err))
-  }
+  // item: IProductAdd ={} as  IProductAdd
+  // update(id: any) {
+  //   this.item.Name = this.productName?.value;
+  //   this.item.Price = this.productForm.get('price')?.value;
+  //   this.item.Description = this.productForm.get('description')?.value;
+  //   this.item.CompanyName = this.productForm.get('companyName')?.value;
+  //   this.item.CategoryName = this.productForm.get('categoryName')?.value;
+  //   this.item.SupCategoryName = this.productForm.get('supCategoryName')?.value;
+  //   this.productservice.updateProduct(id, this.item).subscribe(data => { console.log(data) }, err => console.log(err))
+  // }
   dalete(id: any) {
     this.productservice.deleteProduct(id).subscribe(data => { console.log(data) }, err => console.log(err))
   }
